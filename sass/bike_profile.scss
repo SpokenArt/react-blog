@@ -1,0 +1,47 @@
+.full-post{
+  margin-top: 80px;
+}
+.recipe-hero {
+    margin-top: -119px;
+    max-height: 580px;
+    overflow: hidden;
+}
+.hero {
+    background: #fff;
+    text-align: center;
+}
+
+
+// TEXT
+
+*, :after, :before {
+    box-sizing: inherit;
+    //What does this do?
+}
+.recipe-hero h1 {
+  position: absolute;
+  right: 15%;
+  top: 35%;
+  
+  background: white;
+  padding: 10px;
+}
+
+body h1, body h2, body h3, body h4, body h5 {
+    font-family: Van Condensed Pro;
+    color: #000;
+}
+body h1, body h2 {
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+// IMAGE
+
+.recipe-hero img {
+    width: auto;
+    max-height: 100%;
+}
+img {
+    max-width: 100%;
+}
