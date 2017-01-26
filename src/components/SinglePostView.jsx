@@ -69,18 +69,18 @@ var SinglePostView = React.createClass({
 
         return (
             <div className="full-post">
-                <div>
-                    <Link to={`/`}><Glyphicon glyph="arrow-left" />&nbsp;Back</Link>
-                </div>
-                <h1 className="post-title">{this.state.currentPost.title}</h1>
-                <div className="author-details">
-                    {this.getAuthorDetails(this.state.currentPost)}
-                </div>
                 <div className="post-content">
                     <div dangerouslySetInnerHTML={ {__html: this.state.currentPost.description || ''} }></div>
                     <div dangerouslySetInnerHTML={ {__html: htmlIncludes.join('')} }></div>
                     <div dangerouslySetInnerHTML={ {__html: marked( mdIncludes.join('') )} }></div>
                     {jsxIncludes}
+                </div>
+                <h1 className="post-title">{this.state.currentPost.title}</h1>
+                <div className="author-details">
+                    {this.getAuthorDetails(this.state.currentPost)}
+                </div>
+                <div>
+                    <Link to={`/`}><Glyphicon glyph="arrow-left" />&nbsp;Back</Link>
                 </div>
             </div>
         )

@@ -15,7 +15,7 @@ Iso.bootstrap(function (state, meta, container) {
 });
 
 
-},{"./alt":473,"./routes.jsx":484,"iso":72,"react-router":273,"react/addons":288}],2:[function(require,module,exports){
+},{"./alt":475,"./routes.jsx":486,"iso":72,"react-router":273,"react/addons":288}],2:[function(require,module,exports){
 var port = 9080;
 
 var config = {
@@ -6358,7 +6358,8 @@ function escape(html, encode) {
 }
 
 function unescape(html) {
-  return html.replace(/&([#\w]+);/g, function(_, n) {
+	// explicitly match decimal, hex, and named HTML entities 
+  return html.replace(/&(#(?:\d+)|(?:#x[0-9A-Fa-f]+)|(?:\w+));?/g, function(_, n) {
     n = n.toLowerCase();
     if (n === 'colon') return ':';
     if (n.charAt(0) === '#') {
@@ -18162,7 +18163,7 @@ module.exports = PathUtils;
 },{"invariant":71,"object-assign":145,"qs":283}],254:[function(require,module,exports){
 'use strict';
 
-var assign = require('react/lib/Object.assign');
+var assign = require('object-assign');
 var ReactPropTypes = require('react').PropTypes;
 var Route = require('./Route');
 
@@ -18189,7 +18190,7 @@ var PropTypes = assign({}, ReactPropTypes, {
 });
 
 module.exports = PropTypes;
-},{"./Route":256,"react":460,"react/lib/Object.assign":316}],255:[function(require,module,exports){
+},{"./Route":256,"object-assign":145,"react":460}],255:[function(require,module,exports){
 /**
  * Encapsulates a redirect to the given route.
  */
@@ -18209,7 +18210,7 @@ var _createClass = (function () { function defineProperties(target, props) { for
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-var assign = require('react/lib/Object.assign');
+var assign = require('object-assign');
 var invariant = require('invariant');
 var warning = require('./warning');
 var PathUtils = require('./PathUtils');
@@ -18405,7 +18406,7 @@ var Route = (function () {
 })();
 
 module.exports = Route;
-},{"./PathUtils":253,"./warning":282,"invariant":71,"react/lib/Object.assign":316}],257:[function(require,module,exports){
+},{"./PathUtils":253,"./warning":282,"invariant":71,"object-assign":145}],257:[function(require,module,exports){
 'use strict';
 
 var invariant = require('invariant');
@@ -18803,7 +18804,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var React = require('react');
-var assign = require('react/lib/Object.assign');
+var assign = require('object-assign');
 var PropTypes = require('../PropTypes');
 
 function isLeftClickEvent(event) {
@@ -18901,6 +18902,12 @@ var Link = (function (_React$Component) {
 
       if (props.activeStyle && this.getActiveState()) props.style = props.activeStyle;
 
+      delete props.to;
+      delete props.params;
+      delete props.query;
+      delete props.activeClassName;
+      delete props.activeStyle;
+
       return React.DOM.a(props, this.props.children);
     }
   }]);
@@ -18927,7 +18934,7 @@ Link.defaultProps = {
 };
 
 module.exports = Link;
-},{"../PropTypes":254,"react":460,"react/lib/Object.assign":316}],266:[function(require,module,exports){
+},{"../PropTypes":254,"object-assign":145,"react":460}],266:[function(require,module,exports){
 'use strict';
 
 var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
@@ -19125,7 +19132,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== 'function' 
 
 var React = require('react');
 var ContextWrapper = require('./ContextWrapper');
-var assign = require('react/lib/Object.assign');
+var assign = require('object-assign');
 var PropTypes = require('../PropTypes');
 
 var REF_NAME = '__routeHandler__';
@@ -19221,7 +19228,7 @@ RouteHandler.childContextTypes = {
 };
 
 module.exports = RouteHandler;
-},{"../PropTypes":254,"./ContextWrapper":263,"react":460,"react/lib/Object.assign":316}],270:[function(require,module,exports){
+},{"../PropTypes":254,"./ContextWrapper":263,"object-assign":145,"react":460}],270:[function(require,module,exports){
 (function (process){
 /* jshint -W058 */
 'use strict';
@@ -19741,7 +19748,7 @@ module.exports = createRouter;
 'use strict';
 
 var React = require('react');
-var assign = require('react/lib/Object.assign');
+var assign = require('object-assign');
 var warning = require('./warning');
 var DefaultRoute = require('./components/DefaultRoute');
 var NotFoundRoute = require('./components/NotFoundRoute');
@@ -19818,7 +19825,7 @@ function createRoutesFromReactChildren(children) {
 }
 
 module.exports = createRoutesFromReactChildren;
-},{"./Route":256,"./components/DefaultRoute":264,"./components/NotFoundRoute":266,"./components/Redirect":267,"./warning":282,"react":460,"react/lib/Object.assign":316}],272:[function(require,module,exports){
+},{"./Route":256,"./components/DefaultRoute":264,"./components/NotFoundRoute":266,"./components/Redirect":267,"./warning":282,"object-assign":145,"react":460}],272:[function(require,module,exports){
 'use strict';
 
 var invariant = require('invariant');
@@ -43147,7 +43154,7 @@ for (var key in requestBase) {
 Request.prototype.abort = function(){
   if (this.aborted) return;
   this.aborted = true;
-  this.xhr.abort();
+  this.xhr && this.xhr.abort();
   this.clearTimeout();
   this.emit('abort');
   return this;
@@ -44207,6 +44214,27 @@ function has(o, k) {
 }).call(this,require('_process'))
 },{"_process":146,"invariant":71,"react":460}],469:[function(require,module,exports){
 var React = require('react/addons');
+
+
+var ImagesComponent = React.createClass({displayName: "ImagesComponent",
+
+    render : function() {
+
+
+        return (
+            React.createElement("div", {className: "hero recipe-hero animated fadeIn"}, 
+              React.createElement("h1", null, "Title h11"), 
+              React.createElement("img", {src: "/images/voteByBike/bike1_edited.jpg"})
+            )
+        )
+    }
+});
+
+module.exports = ImagesComponent;
+
+
+},{"react/addons":288}],470:[function(require,module,exports){
+var React = require('react/addons');
 var Tabs = require('react-bootstrap').Tabs;
 var Tab = require('react-bootstrap').Tab;
 var Tooltip = require('react-bootstrap').Tooltip;
@@ -44322,7 +44350,41 @@ var ReasonsToUseReact = React.createClass({displayName: "ReasonsToUseReact",
 
 module.exports = ReasonsToUseReact;
 
-},{"react-bootstrap":217,"react/addons":288}],470:[function(require,module,exports){
+
+},{"react-bootstrap":217,"react/addons":288}],471:[function(require,module,exports){
+var React = require('react/addons');
+
+
+var ImagesComponent = React.createClass({displayName: "ImagesComponent",
+
+    render : function() {
+
+        let abc = ['a','b'];
+
+        return (
+            React.createElement("div", null, 
+
+            abc[0], 
+            React.createElement("p", null, " fart"), 
+
+            React.createElement("ul", null, 
+            
+              abc.map( function(valuee)  {
+                return ( React.createElement("li", null, " ", valuee, " ") );
+              })
+            
+            )
+
+
+            )
+        )
+    }
+});
+
+module.exports = ImagesComponent;
+
+
+},{"react/addons":288}],472:[function(require,module,exports){
 var request = require('superagent'),
     config = require('../config');
 
@@ -44362,7 +44424,7 @@ var IncludeHandler = (function() {
 
 module.exports = IncludeHandler;
 
-},{"../config":2,"superagent":462}],471:[function(require,module,exports){
+},{"../config":2,"superagent":462}],473:[function(require,module,exports){
 var alt = require('../alt');
 var request = require('superagent');
 var config = require('../../config');
@@ -44446,7 +44508,7 @@ function AllPostActions(){"use strict";}
 
 module.exports = alt.createActions(AllPostActions);
 
-},{"../../config":2,"../alt":473,"../stores/AllPostStore":485,"superagent":462}],472:[function(require,module,exports){
+},{"../../config":2,"../alt":475,"../stores/AllPostStore":487,"superagent":462}],474:[function(require,module,exports){
 var alt = require('../alt');
 var request = require('superagent');
 var config = require('../../config');
@@ -44532,12 +44594,12 @@ function SinglePostActions(){"use strict";}
 
 module.exports = alt.createActions(SinglePostActions);
 
-},{"../../config":2,"../IncludeHandler":470,"../alt":473,"../stores/SinglePostStore":486,"superagent":462}],473:[function(require,module,exports){
+},{"../../config":2,"../IncludeHandler":472,"../alt":475,"../stores/SinglePostStore":488,"superagent":462}],475:[function(require,module,exports){
 var Alt = require('alt');
 var alt = new Alt();
 module.exports = alt;
 
-},{"alt":3}],474:[function(require,module,exports){
+},{"alt":3}],476:[function(require,module,exports){
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var Header = require('./Header.jsx');
@@ -44569,7 +44631,7 @@ var App = React.createClass({displayName: "App",
 
 module.exports = App;
 
-},{"./Footer.jsx":475,"./Header.jsx":476,"react-bootstrap":217,"react-router":273,"react/addons":288}],475:[function(require,module,exports){
+},{"./Footer.jsx":477,"./Header.jsx":478,"react-bootstrap":217,"react-router":273,"react/addons":288}],477:[function(require,module,exports){
 var React = require('react/addons');
 
 var Link = require('react-router').Link;
@@ -44591,7 +44653,7 @@ var Footer = React.createClass({displayName: "Footer",
 
 module.exports = Footer;
 
-},{"react-router":273,"react/addons":288}],476:[function(require,module,exports){
+},{"react-router":273,"react/addons":288}],478:[function(require,module,exports){
 var React = require('react/addons');
 
 var Navbar = require('react-bootstrap').Navbar;
@@ -44616,15 +44678,17 @@ var Header = React.createClass({displayName: "Header",
 
 module.exports = Header;
 
-},{"react-bootstrap":217,"react-router":273,"react/addons":288}],477:[function(require,module,exports){
+},{"react-bootstrap":217,"react-router":273,"react/addons":288}],479:[function(require,module,exports){
 //This file was auto generated. Updating it will have no effect
 var JsxIncludes = {};
+JsxIncludes["/static/jsx/bike_profile.jsx"] = require("../../public/static/jsx/bike_profile.jsx");
 JsxIncludes["/static/jsx/react-components-example.jsx"] = require("../../public/static/jsx/react-components-example.jsx");
+JsxIncludes["/static/jsx/test.jsx"] = require("../../public/static/jsx/test.jsx");
 
 module.exports = JsxIncludes;
 
 
-},{"../../public/static/jsx/react-components-example.jsx":469}],478:[function(require,module,exports){
+},{"../../public/static/jsx/bike_profile.jsx":469,"../../public/static/jsx/react-components-example.jsx":470,"../../public/static/jsx/test.jsx":471}],480:[function(require,module,exports){
 var React = require('react/addons');
 var config = require('../../config');
 var Link = require('react-router').Link;
@@ -44791,7 +44855,7 @@ var Pagination = React.createClass({displayName: "Pagination",
 
 module.exports = Pagination;
 
-},{"../../config":2,"react-router":273,"react/addons":288}],479:[function(require,module,exports){
+},{"../../config":2,"react-router":273,"react/addons":288}],481:[function(require,module,exports){
 var React = require('react/addons');
 
 var PostListHeader = React.createClass({displayName: "PostListHeader",
@@ -44829,7 +44893,7 @@ var PostListHeader = React.createClass({displayName: "PostListHeader",
 
 module.exports = PostListHeader;
 
-},{"react/addons":288}],480:[function(require,module,exports){
+},{"react/addons":288}],482:[function(require,module,exports){
 var React = require('react/addons');
 var AllPostStore = require('../stores/AllPostStore');
 var AllPostActions = require('../actions/AllPostActions');
@@ -44893,7 +44957,9 @@ var PostListView = React.createClass({displayName: "PostListView",
 
         return (
             React.createElement("div", null, 
-                
+                /* @goal = component for video with setStates for desktop only */
+                /* @goal = component for images & sales copy */
+
                 React.createElement(PostListHeader, {header: this.state.postListContent.header, content: this.state.postListContent.content}), 
 
                 React.createElement("div", {className: "post-list"}, 
@@ -44916,7 +44982,8 @@ var PostListView = React.createClass({displayName: "PostListView",
 
 module.exports = PostListView;
 
-},{"../../config":2,"../actions/AllPostActions":471,"../stores/AllPostStore":485,"./Pagination.jsx":478,"./PostListHeader.jsx":479,"./PostPreview.jsx":481,"react/addons":288}],481:[function(require,module,exports){
+
+},{"../../config":2,"../actions/AllPostActions":473,"../stores/AllPostStore":487,"./Pagination.jsx":480,"./PostListHeader.jsx":481,"./PostPreview.jsx":483,"react/addons":288}],483:[function(require,module,exports){
 var React = require('react/addons');
 var SinglePostActions = require('../actions/SinglePostActions');
 var AuthorMixin = require('../mixins/AuthorMixin.jsx');
@@ -44938,10 +45005,12 @@ var PostPreview = React.createClass({displayName: "PostPreview",
     render : function() {
         return (
             React.createElement("a", {href: '/post/' + this.props.post.id +'/'+this.props.post.slug, className: "single-post", onClick: this.loadPost}, 
-                React.createElement("div", {className: "post-title"}, this.props.post.title), 
+                React.createElement("div", {className: "post-title"}, this.props.post.title, " "), 
                 React.createElement("div", {className: "author-details"}, 
                     this.getAuthorDetails(this.props.post)
-                )
+                ), 
+                React.createElement("img", {className: "post-image", src: this.props.post.author.photo})
+                /* source this image from post's included images  */
             )
         )
     }
@@ -44949,7 +45018,8 @@ var PostPreview = React.createClass({displayName: "PostPreview",
 
 module.exports = PostPreview;
 
-},{"../actions/SinglePostActions":472,"../mixins/AuthorMixin.jsx":483,"react/addons":288}],482:[function(require,module,exports){
+
+},{"../actions/SinglePostActions":474,"../mixins/AuthorMixin.jsx":485,"react/addons":288}],484:[function(require,module,exports){
 var React = require('react/addons');
 var SinglePostStore = require('../stores/SinglePostStore');
 var Glyphicon = require('react-bootstrap').Glyphicon;
@@ -45021,18 +45091,18 @@ var SinglePostView = React.createClass({displayName: "SinglePostView",
 
         return (
             React.createElement("div", {className: "full-post"}, 
-                React.createElement("div", null, 
-                    React.createElement(Link, {to: ("/")}, React.createElement(Glyphicon, {glyph: "arrow-left"}), " Back")
-                ), 
-                React.createElement("h1", {className: "post-title"}, this.state.currentPost.title), 
-                React.createElement("div", {className: "author-details"}, 
-                    this.getAuthorDetails(this.state.currentPost)
-                ), 
                 React.createElement("div", {className: "post-content"}, 
                     React.createElement("div", {dangerouslySetInnerHTML:  {__html: this.state.currentPost.description || ''} }), 
                     React.createElement("div", {dangerouslySetInnerHTML:  {__html: htmlIncludes.join('')} }), 
                     React.createElement("div", {dangerouslySetInnerHTML:  {__html: marked( mdIncludes.join('') )} }), 
                     jsxIncludes
+                ), 
+                React.createElement("h1", {className: "post-title"}, this.state.currentPost.title), 
+                React.createElement("div", {className: "author-details"}, 
+                    this.getAuthorDetails(this.state.currentPost)
+                ), 
+                React.createElement("div", null, 
+                    React.createElement(Link, {to: ("/")}, React.createElement(Glyphicon, {glyph: "arrow-left"}), " Back")
                 )
             )
         )
@@ -45041,7 +45111,8 @@ var SinglePostView = React.createClass({displayName: "SinglePostView",
 
 module.exports = SinglePostView;
 
-},{"../actions/AllPostActions":471,"../actions/SinglePostActions":472,"../mixins/AuthorMixin.jsx":483,"../stores/SinglePostStore":486,"./JsxIncludes":477,"marked":144,"react-bootstrap":217,"react-router":273,"react/addons":288}],483:[function(require,module,exports){
+
+},{"../actions/AllPostActions":473,"../actions/SinglePostActions":474,"../mixins/AuthorMixin.jsx":485,"../stores/SinglePostStore":488,"./JsxIncludes":479,"marked":144,"react-bootstrap":217,"react-router":273,"react/addons":288}],485:[function(require,module,exports){
 var React = require('react/addons');
 
 var AuthorMixin = {
@@ -45061,7 +45132,7 @@ var AuthorMixin = {
 
 module.exports = AuthorMixin;
 
-},{"react/addons":288}],484:[function(require,module,exports){
+},{"react/addons":288}],486:[function(require,module,exports){
 var React = require('react/addons');
 var Route = require('react-router').Route;
 var DefaultRoute = require('react-router').DefaultRoute;
@@ -45079,7 +45150,7 @@ var routes = (
 
 module.exports = routes;
 
-},{"./components/App.jsx":474,"./components/PostListView.jsx":480,"./components/SinglePostView.jsx":482,"react-router":273,"react/addons":288}],485:[function(require,module,exports){
+},{"./components/App.jsx":476,"./components/PostListView.jsx":482,"./components/SinglePostView.jsx":484,"react-router":273,"react/addons":288}],487:[function(require,module,exports){
 var alt = require('../alt');
 var AllPostActions = require('../actions/AllPostActions');
 
@@ -45119,7 +45190,7 @@ var AllPostActions = require('../actions/AllPostActions');
 
 module.exports = alt.createStore(AllPostStore, 'AllPostStore');
 
-},{"../actions/AllPostActions":471,"../alt":473}],486:[function(require,module,exports){
+},{"../actions/AllPostActions":473,"../alt":475}],488:[function(require,module,exports){
 var alt = require('../alt');
 var SinglePostActions = require('../actions/SinglePostActions');
 
@@ -45162,4 +45233,4 @@ var SinglePostActions = require('../actions/SinglePostActions');
 
 module.exports = alt.createStore(SinglePostStore, 'SinglePostStore');
 
-},{"../actions/SinglePostActions":472,"../alt":473}]},{},[1]);
+},{"../actions/SinglePostActions":474,"../alt":475}]},{},[1]);
